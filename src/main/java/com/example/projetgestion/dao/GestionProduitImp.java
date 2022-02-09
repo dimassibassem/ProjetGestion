@@ -86,6 +86,7 @@ public class GestionProduitImp implements IGestionProduit {
                         res.getDouble(3),
                         res.getInt(4)));
             }
+
             return list;
         } catch (SQLException e) {
             e.printStackTrace();
