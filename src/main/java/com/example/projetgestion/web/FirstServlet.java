@@ -15,7 +15,7 @@ import com.example.projetgestion.dao.IGestionProduit;
 import com.example.projetgestion.dao.Produit;
 
 
-@WebServlet(urlPatterns = {"/listeProduits", "/addProduit", "/deleteProduit", "/editProduit"})
+@WebServlet(urlPatterns = {"/listeProduits", "/addProduit", "/deleteProduit", "/editProduit","/findProduit"})
 public class FirstServlet extends HttpServlet {
 
 
@@ -61,6 +61,11 @@ public class FirstServlet extends HttpServlet {
             int quantite = Integer.parseInt(request.getParameter("quantite"));
             gestion.modifProduit(new Produit(id, nom, prix, quantite));
             response.sendRedirect(request.getContextPath() + "/listeProduits");
+        } else if (path.equals("/findProduit")) {
+            String mot = request.getParameter("motcle");
+            request.setAttribute("listeP",gestion.getProduitParNom(mot));
+            request.getRequestDispatcher("affiche.jsp").forward(request,response);
+
         }
     }
 

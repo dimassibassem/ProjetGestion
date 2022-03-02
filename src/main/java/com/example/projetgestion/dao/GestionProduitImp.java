@@ -84,13 +84,14 @@ public class GestionProduitImp implements IGestionProduit {
 
     @Override
     public List<Produit> getProduitParNom(String nom) {
+        var list = new ArrayList<Produit>();
         try {
             var sqlSelect = "SELECT * FROM produit where nom like ?";
             PreparedStatement stm = connection.prepareStatement(sqlSelect);
             stm.setString(1, '%' + nom + '%');
 
             var res = stm.executeQuery();
-            var list = new ArrayList<Produit>();
+
             while (res.next()) {
                 list.add(new Produit(
                         res.getInt(1),
@@ -102,7 +103,7 @@ public class GestionProduitImp implements IGestionProduit {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return list;
     }
 
     @Override

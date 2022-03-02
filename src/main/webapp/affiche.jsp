@@ -19,12 +19,14 @@
     <div class="my-3">
         <a href="addProduit" class="btn btn-primary">Ajouter un nouveau produit</a>
     </div>
-    <div>
-        <form method="POST" action="findProduits">
-        <input type="search" name="motle"/>
-            <input type="submit" value="Rechercher"/>
-        </form>
-    </div>
+    <form method="POST" action="findProduit">
+        <div class="form-group row">
+
+            <div class="col-sm-10"><input type="search" name="motcle" class="form-control" placeholder="Search"/></div>
+
+            <div class="col-sm-2"><input type="submit" class="btn btn-warning" value="Rechercher"/></div>
+        </div>
+    </form>
     <table class="table table-hover">
         <tr>
             <th>#</th>
