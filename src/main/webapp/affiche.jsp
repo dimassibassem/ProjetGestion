@@ -2,6 +2,7 @@
 <%@page import="com.example.projetgestion.dao.Produit" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<% List<Produit> l = (List<Produit>) request.getAttribute("listeP"); %>
 
 <div class="container mt-4">
     <h1>Liste des produits</h1>
@@ -22,9 +22,13 @@
     <form method="POST" action="findProduit">
         <div class="form-group row">
 
-            <div class="col-sm-10"><input type="search" name="motcle" class="form-control" placeholder="Search"/></div>
+            <div class="col-sm-10">
+                <input type="search" name="motcle" class="form-control" placeholder="Search"/>
+            </div>
 
-            <div class="col-sm-2"><input type="submit" class="btn btn-warning" value="Rechercher"/></div>
+            <div class="col-sm-2">
+                <input type="submit" class="btn btn-warning" value="Rechercher"/>
+            </div>
         </div>
     </form>
     <table class="table table-hover">
@@ -35,23 +39,25 @@
             <th>QUANTITE</th>
 
         </tr>
-        <% for (Produit p : l) { %>
-        <tr>
-            <td><%= p.getId() %>
-            </td>
-            <td><%= p.getNom() %>
-            </td>
-            <td><%= p.getPrix() %>
-            </td>
-            <td><%= p.getQuantite() %>
-            </td>
-            <td>
-                <a href="deleteProduit?id=<%= p.getId() %>" onclick="return confirm('Vouler vous vraiment supprimer?')"
-                   class="btn btn-danger">Supprimer</a>
-                <a href="editProduit?id=<%= p.getId() %>" class="btn btn-primary">Modifier</a>
-            </td>
-        </tr>
-        <% } %>
+        <c:forEach var="p" items="${listeP}">
+            <tr>
+                <td>${p.id}
+                </td>
+                <td>${p.nom}
+                </td>
+                <td>${p.prix}
+                </td>
+                <td>${p.quantite}
+                </td>
+                <td>
+                    <a href="deleteProduit?id=${p.id}" onclick="return confirm('Vouler vous vraiment supprimer?')"
+                       class="btn btn-danger">Supprimer</a>
+                    <a href="editProduit?id=${p.id}" class="btn btn-primary">Modifier</a>
+                </td>
+            </tr>
+        </c:forEach>
+
+
     </table>
 </div>
 </body>
