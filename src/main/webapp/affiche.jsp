@@ -21,7 +21,8 @@
     </div>
     <div>
         <form method="POST" action="findProduits">
-
+        <input type="search" name="motle"/>
+            <input type="submit" value="Rechercher"/>
         </form>
     </div>
     <table class="table table-hover">
