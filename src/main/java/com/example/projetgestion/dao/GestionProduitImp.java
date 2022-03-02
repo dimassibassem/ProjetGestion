@@ -12,23 +12,11 @@ public class GestionProduitImp implements IGestionProduit {
     @Override
     public void ajoutProduit(Produit p) {
         try {
-            if (p.id() != null) {
-                var sqlWithId = "INSERT INTO produit VALUES (?,?,?,?)";
-
-                PreparedStatement stm = connection.prepareStatement(sqlWithId);
-                stm.setInt(1, p.id());
-                stm.setString(2, p.nom());
-                stm.setDouble(3, p.prix());
-                stm.setInt(4, p.quantite());
-                stm.execute();
-                return;
-            }
-
             var sql = "INSERT INTO produit (nom, prix, quantite) VALUES (?,?,?)";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, p.nom());
-            stm.setDouble(2, p.prix());
-            stm.setInt(3, p.quantite());
+            stm.setString(1, p.getNom());
+            stm.setDouble(2, p.getPrix());
+            stm.setInt(3, p.getQuantite());
             stm.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -122,10 +110,10 @@ public class GestionProduitImp implements IGestionProduit {
         try {
             var sql = "UPDATE produit SET nom=?, prix=?, quantite=?  WHERE id=?";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, p.nom());
-            stm.setDouble(2, p.prix());
-            stm.setInt(3, p.quantite());
-            stm.setInt(4, p.id());
+            stm.setString(1, p.getNom());
+            stm.setDouble(2, p.getPrix());
+            stm.setInt(3, p.getQuantite());
+            stm.setInt(4, p.getId());
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
