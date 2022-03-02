@@ -19,6 +19,11 @@
     <div class="my-3">
         <a href="addProduit" class="btn btn-primary">Ajouter un nouveau produit</a>
     </div>
+    <div>
+        <form method="POST" action="findProduits">
+
+        </form>
+    </div>
     <table class="table table-hover">
         <tr>
             <th>#</th>

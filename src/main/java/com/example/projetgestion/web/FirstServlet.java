@@ -15,7 +15,7 @@ import com.example.projetgestion.dao.IGestionProduit;
 import com.example.projetgestion.dao.Produit;
 
 
-@WebServlet(urlPatterns = {"/listeProduits", "/addProduit", "/deleteProduit","/editProduit"})
+@WebServlet(urlPatterns = {"/listeProduits", "/addProduit", "/deleteProduit", "/editProduit"})
 public class FirstServlet extends HttpServlet {
 
 
@@ -38,7 +38,7 @@ public class FirstServlet extends HttpServlet {
             String id = request.getParameter("id");
             gestion.supprProduit(Integer.parseInt(id));
             response.sendRedirect(request.getContextPath() + "/listeProduits");
-        }else if (path.equals("/editProduit")) {
+        } else if (path.equals("/editProduit")) {
             String id = request.getParameter("id");
             Produit produit = gestion.rechercheParId(Integer.parseInt(id));
             request.setAttribute("produit", produit);
@@ -54,13 +54,13 @@ public class FirstServlet extends HttpServlet {
             int quantite = Integer.parseInt(request.getParameter("quantite"));
             gestion.ajoutProduit(new Produit(nom, prix, quantite));
             response.sendRedirect(request.getContextPath() + "/listeProduits");
-        }else if (path.equals("/editProduit")) {
+        } else if (path.equals("/editProduit")) {
             int id = Integer.parseInt(request.getParameter("id"));
             String nom = request.getParameter("nom");
             double prix = Double.parseDouble(request.getParameter("prix"));
             int quantite = Integer.parseInt(request.getParameter("quantite"));
-            gestion.modifProduit(new Produit(id,nom,prix,quantite));
-            response.sendRedirect(request.getContextPath()+"/listeProduits");
+            gestion.modifProduit(new Produit(id, nom, prix, quantite));
+            response.sendRedirect(request.getContextPath() + "/listeProduits");
         }
     }
 
